@@ -1,0 +1,9 @@
+package PracticeProb.src.ServerGoup;
+
+public class SumsInTriangle {
+
+}
+
+
+/*Case #1 5
+Case #2 9*/
