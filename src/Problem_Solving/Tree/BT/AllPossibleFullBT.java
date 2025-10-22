@@ -1,4 +1,4 @@
-package Problem_Solving.Tree.Pepcoding.Binary_Tree;
+package Problem_Solving.Tree.BT;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -15,7 +15,7 @@ public class AllPossibleFullBT {
 			return base;
 		}
 		List<Node> ans = new ArrayList<Node>();
-		for (int i = 1; i < n; i+=2) {									// I - i will increase by 2 since only odd numbered indexes can be root
+		for (int i=1; i<n; i+=2) {							// I - i will increase by 2 since only odd numbered indexes can be root
 			List<Node> left = helper(i);
 			List<Node> right = helper(n-i-1);
 			for(Node l : left) {

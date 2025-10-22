@@ -1,4 +1,4 @@
-package Problem_Solving.MathsAndBits;
+package Problem_Solving.Maths;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -3,7 +3,7 @@ package Problem_Solving.Tree.BT;
 public class BurningTree {
 
 	//Same logic as NodesAtKDistance
-	static int burningTree(Node node, int target)    { 
+	static int burningTree(Node node, int target) { 
 		if (node == null) 
 			return -1; 
 
@@ -33,8 +33,8 @@ public class BurningTree {
 			return; 
 
 		maxTime = Math.max(maxTime, time);
-		burnTree(node.left, time+ 1, blocker); 
-		burnTree(node.right, time+ 1, blocker); 
+		burnTree(node.left, time + 1, blocker); 
+		burnTree(node.right, time + 1, blocker); 
 	}
 
 	public static void main(String[] args)	{

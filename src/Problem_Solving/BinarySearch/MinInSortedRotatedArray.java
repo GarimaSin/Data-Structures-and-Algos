@@ -22,8 +22,8 @@ public class MinInSortedRotatedArray {
 
 		while(start <= end) {
 			mid = start + (end - start)/2;
-			int next = (mid+1) % len;			// make the array circular by pointing next to 0th index if mid = last elem
-			int prev = (mid-1 +len) % len;   // make the array circular by pointing prev to last index if mid = 0th elem
+			int next = (mid+1) % len;		// make the array circular by pointing next to 0th index if mid = last elem
+			int prev = (mid-1 +len) % len;  // make the array circular by pointing prev to last index if mid = 0th elem
 			if(nums[mid] <= nums[prev] && nums[mid] <= nums[next]) {
 				return nums[mid];
 			}

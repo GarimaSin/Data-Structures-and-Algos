@@ -27,7 +27,7 @@ public class SameBSTs {
 		ArrayList<Integer> aLRight1 = new ArrayList<Integer>(); 
 		ArrayList<Integer> aLLeft2 = new ArrayList<Integer>(); 
 		ArrayList<Integer> aLRight2 = new ArrayList<Integer>(); 
-		for (int i = 1; i < aL1.size(); i++) { 
+		for (int i=1; i < aL1.size(); i++) { 
 			if (aL1.get(i) < aL1.get(0)) 						//Move all elements less than root to left list/subtree for list1
 				aLLeft1.add(aL1.get(i)); 
 			else

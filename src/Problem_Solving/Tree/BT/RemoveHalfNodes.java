@@ -44,7 +44,7 @@ public class RemoveHalfNodes {
 		if(node == null)
 			return null;
 		
-		node.left = removeHalfNodes1(node.left);					// returned node contains the node which has both child as null or both child != null
+		node.left = removeHalfNodes1(node.left);	// returned node contains the node which has both child as null or both child != null
 		node.right = removeHalfNodes1(node.right);
 		
 		if(node.left == null && node.right == null)

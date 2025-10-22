@@ -6,27 +6,27 @@ import java.util.LinkedList;
 public class BSTFromPostOrder {
 
 	
-	// Not - Working
-	public static Node constructTree(int[] postOrder, int si, int ei) {
-		if(si > ei)					//breaking condition
-			return null;
-
-		int val = postOrder[ei];
-		Node root = new Node(val);
-		ei--;
-		
-		if(si == ei)				//breaking condition
-			return root;
-
-		int i = 0;
-		for(i = si; i <= ei; i++) {
-			if(postOrder[i] > val) {
-				break;
-			}
-		}
-		root.left = constructTree(postOrder, si, i - 1);
-		root.right = constructTree(postOrder, i, ei);
-		return root;
+	// Working
+	static Node constructTree(int[] postOrder, int si, int ei) {
+		if (si > ei) 
+            return null;
+    
+        int val = postOrder[ei];          // root is last element
+        Node root = new Node(val);
+    
+        if (si == ei) 
+            return root;
+    
+        int idx = ei;					// initialize idx = ei
+        for (int j = si; j <= ei-1; j++) {  // exclude root at ei
+            if (postOrder[j] > val) {
+                idx = j;
+                break;
+            }
+        }
+        root.left = constructTree(postOrder, si, idx - 1);
+        root.right = constructTree(postOrder, idx, ei-1);
+        return root;
 	}
 
 	public static void main(String[] args) {

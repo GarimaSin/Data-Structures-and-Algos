@@ -12,18 +12,6 @@ public class BSTFromPreOrder {
 		return helper(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
-	void kthLargestUtil(Node node, int k, int count) {
-        if (node == null || count >= k)
-            return;
-         
-        this.kthLargestUtil(node.right, k, count);
-        count++;
-        if (count == k) {
-            System.out.println(k+"th largest element is "+node.val);
-            return;
-        }
-        this.kthLargestUtil(node.left, k, count);
-    }
 
 	//Working
 	public static Node helper (int[] preorder, int min, int max) {
@@ -38,7 +26,7 @@ public class BSTFromPreOrder {
 
 		idx++;
 
-		Node left = helper ( preorder, min, val);				// min to val
+		Node left = helper (preorder, min, val);				// min to val
 		Node right = helper (preorder, val, max);				// val to max
 
 		Node root = new Node (val);
@@ -48,71 +36,32 @@ public class BSTFromPreOrder {
 		return root;
 	}
 
+
+	// ==========================================================================================
+
 	//Working
+	int pi = 0;
 	public Node find(int[] preorder, int si, int ei) {
-		if(si > ei)					//breaking condition
+		if (si > ei || pi >= preorder.length)
 			return null;
 
-		Node root = new Node(preorder[si]);
-		si++;
-		
-		if(si == ei)				//breaking condition
+		Node root = new Node(preorder[pi++]);
+		if (si == ei)
 			return root;
 
+		// find first index greater than root.val
 		int breakidx = ei + 1;
-		for(int i = si; i <= ei; i++) {
-			if(preorder[i] > preorder[si]) {
+		for (int i = si; i <= ei; i++) {
+			if (preorder[i] > root.val) {
 				breakidx = i;
 				break;
 			}
 		}
-		root.left = find(preorder, si, breakidx - 1);
+		root.left = find(preorder, si + 1, breakidx - 1);
 		root.right = find(preorder, breakidx, ei);
 		return root;
 	}
 
-
-	class Index {
-		int index = 0;
-	}
-
-
-
-	Index index = new Index();
-	//Working
-	Node constructTreeUtil(int pre[], Index preIndex, int low, int high, int size)  {
-		// Base case
-		if (preIndex.index >= size || low > high) {
-			return null;
-		}
-
-		// The first node in preorder traversal is root. So
-		// take the node at preIndex from pre[] and make it
-		// root, and increment preIndex
-		Node root = new Node(pre[preIndex.index]);
-		preIndex.index = preIndex.index + 1;
-
-		// If the current subarray has only one element, no need to recur
-		if (low == high) {
-			return root;
-		}
-
-		// Search for the first element greater than root
-		int i;
-		for (i = low; i <= high; ++i) {
-			if (pre[i] > root.val) {
-				break;
-			}
-		}
-
-		// Use the index of element found in preorder to
-		// divide preorder array in two parts. Left subtree
-		// and right subtree
-		root.left = constructTreeUtil(pre, preIndex, preIndex.index, i - 1, size);
-		root.right = constructTreeUtil(pre, preIndex, i, high, size);
-
-		return root;
-	}
 
 
 	public static void main(String[] args) {

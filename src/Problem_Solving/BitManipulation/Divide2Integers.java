@@ -21,11 +21,11 @@ public class Divide2Integers {
         while (n >= d) {
             int count = 0;
             //V stop shifting b4 v hit 64 bits (since 'long'), so d value never wraps around.
-            while ((count+1) < 63 && n >= (d << (count+1))) {	// d * 2^(count+1)
+            while ((count+1) < 63 && n >= (d << (count+1))) {	// = d * 2^(count+1)
                 count++;
             }
-            ans += 1 << count;		//// 2^(count)
-            n -= d << count;
+            ans += 1 << count;		// ans = ans + 2^(count)
+            n = n - (d * (1 << count));   		// d * 2^count
         }
 
         return sign ? ans : -ans;

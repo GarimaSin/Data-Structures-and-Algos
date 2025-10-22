@@ -1,7 +1,21 @@
 package Problem_Solving.BitManipulation;
 
 public class ReverseBits {
+	
+	
+	// My Sol - Working
+	public int reverseBits1(int n) {
+        int num = 0;
+        for (int i=0; i < 32; i++) {
+        	
+            if((n & (1<<i)) != 0) 
+               num |= (1 << (31-i)); 
+        }
+        return num;
+    }
 
+	// ================================================================================================
+	
 	public int reverseBits(int n) {
 		int mask = 1;
 		// Update the first number

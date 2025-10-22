@@ -4,41 +4,22 @@ import Problem_Solving.Tree.BST.LargestBSTInBinaryTree.Node;
 
 public class LargestBSTInBinaryTree {
 
-	public static SubTreeInfo findLargestBST(Node node)    {
-		if (node == null) {
-			SubTreeInfo tree = new SubTreeInfo();
-			tree.isBST = true;
-			tree.max = Integer.MIN_VALUE;
-			tree.min = Integer.MAX_VALUE;
-			tree.size = 0;
-			tree.BSTRoot = null;
-			return tree;
-//         return new SubTreeInfo(Integer.MAX_VALUE, Integer.MIN_VALUE, 0, true);
+	public static SubTreeInfo findLargestBST(Node root)    {
+		if (root == null) {
+			return new SubTreeInfo(Integer.MAX_VALUE, Integer.MIN_VALUE, 0, true, null);
 		}
+		SubTreeInfo left = findLargestBST(root.left);
+		SubTreeInfo right = findLargestBST(root.right);
 
-		SubTreeInfo left = findLargestBST(node.left);
-		SubTreeInfo right = findLargestBST(node.right);
-		SubTreeInfo tree = new SubTreeInfo();
-
-		// Check if a binary tree rooted under the current root is a BST
-		tree.isBST = left.isBST && right.isBST && 
-				(node.data >= left.max && node.data <= right.min);	
-
-		//calculating min and max for parent
-		tree.min = Math.min(node.data, Math.min(left.min, right.min));				//new pair's min and max vals
-		tree.max = Math.max(node.data, Math.max(left.max, right.max));
-		
-		if(tree.isBST) {
-			tree.BSTRoot = node;
-			tree.size = left.size + right.size + 1;
-		} else if(left.size > right.size) {
-			tree.BSTRoot = left.BSTRoot;
-			tree.size = left.size;
+		if (left.isBST && right.isBST && root.data > left.max && root.data < right.min) {
+			int s = left.size + right.size + 1;
+			int min = Math.min(left.min, root.data);
+			int max = Math.max(right.max, root.data);
+			return new SubTreeInfo(min, max, s, true, root);
 		} else {
-			tree.BSTRoot = right.BSTRoot;
-			tree.size = right.size;
+			// Not BST here
+			return new SubTreeInfo(0, 0, Math.max(left.size, right.size), false, null);
 		}
-		return tree;
 	}
 
 	public static void main(String[] args)	{
@@ -88,17 +69,14 @@ public class LargestBSTInBinaryTree {
 }
 
 class SubTreeInfo	{
-	// `min`, `max` stores the minimum and the maximum value in the binary tree rooted
-	// under the current node. They are relevant only if the `isBST` flag is true.
+	// `min`, `max` stores the minimum and the maximum value in the BT rooted
+	// under the cu. node. They are relevant only if the `isBST` flag is true.
 	int min, max;
 
-	// stores size of the largest BST in the binary tree rooted under the current node
-	int size;								//gives the largest BST's root till this node
+	// stores size of the largest BST in the BT rooted under the current node
+	int size;						//gives the largest BST's root till this node
 	boolean isBST;
 	Node BSTRoot;					//gives the largest BST's root till this node
-
-	public SubTreeInfo() {
-	}
 
 	SubTreeInfo(int min, int max, int size, boolean isBST, Node n)	{
 		this.min = min;

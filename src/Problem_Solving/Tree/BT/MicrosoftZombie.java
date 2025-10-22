@@ -10,7 +10,6 @@ public class MicrosoftZombie {
 	
 	public static String solution(int[] A, int[] B) {
         int N = A.length;
-        int Z = B.length;
 
         // Build adjacency list for the tree
         List<List<Integer>> tree = new ArrayList<>();

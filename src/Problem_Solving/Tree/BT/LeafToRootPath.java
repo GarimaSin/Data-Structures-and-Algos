@@ -22,13 +22,11 @@ public class LeafToRootPath {
 		left.right = new TreeNode(24);
 		right.left = new TreeNode(22);
 		right.right = new TreeNode(23);
-//		printLeafToRootPath(root, "");
-//		System.out.println("------------");
 		printLeafToRootPath(root, "");
 		System.out.println("------------");
 		printLeafToRootPath2(root," "+root.val);
-//		System.out.println("------------");
-//		printLeafToRootPath3(root, "");
+		System.out.println("------------");
+		printLeafToRootPath3(root, "");
 	}
 	
 	//Not Working
@@ -63,21 +61,16 @@ public class LeafToRootPath {
 			return;
 		}
 
-
-		//String tmp = ans;
 		ans = root.val + " " +ans;
 		printLeafToRootPath(root.left, ans);
 		printLeafToRootPath(root.right, ans);
-		//ans = tmp;
 	}
 
-	//Working
 	
 	//Working
 	static void printLeafToRootPath2(TreeNode root, String ans) {
-		if(root == null) {
+		if(root == null) 
 			return;
-		}
 
 		if(root.left == null && root.right == null) {
 			System.out.println(ans);
@@ -85,30 +78,17 @@ public class LeafToRootPath {
 		}
 		String tmp = ans;
 		if(root.left != null) {
-			ans = " "+root.left.val + ans;
+			ans = " "+root.left.val + ans;			//root.left.val
 			printLeafToRootPath2(root.left, ans);
 			ans = tmp;
 		}
 
 		if(root.right != null) {
-			ans = " "+root.right.val + ans;
+			ans = " "+root.right.val + ans;			//root.right.val
 			printLeafToRootPath2(root.right, ans);
 			ans = tmp;
 		}	
-//		ans = tmp;						wont work
+//		ans = tmp;						//wont work
 	}
 
-	//Not working
-	static void printLeafToRootPath1(TreeNode root, String ans) {
-		if(root == null) {
-			System.out.println(ans);
-			return;
-		}
-
-		String tmp = ans;
-		ans = root.val + " " +ans;
-		printLeafToRootPath1(root.left, ans);
-		printLeafToRootPath1(root.right, ans);
-		ans = tmp;
-	}
 }

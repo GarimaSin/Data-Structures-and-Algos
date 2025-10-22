@@ -1,37 +1,16 @@
 package Problem_Solving.Tree.BST;
 
 public class ValidateBST {
-
+	
 	public static boolean isValidBST(Node root) {
-		if(root.left == null && root.right == null)
-			return true;
-		BSTPair ans = isBST(root);
-		isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
-		return ans.isBST;
-	}
-
-	//Sol: 1 - Pepcoding
-	static BSTPair isBST(Node root) {
-		if(root == null) {
-			return new BSTPair(999999, -999999, true);
-		}
-
-		BSTPair l = isBST(root.left);
-		BSTPair r = isBST(root.right);
-		if(!l.isBST || !r.isBST)
-			return new BSTPair(Integer.MAX_VALUE, Integer.MIN_VALUE, false);
-
-		int min = Math.min(l.min, Math.min(r.min, root.val));
-		int max = Math.max(l.max, Math.max(r.max, root.val));
-
-		boolean isBST = l.isBST && r.isBST && l.max < root.val && r.min > root.val;
-		return new BSTPair(min, max, isBST);
-	}
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
 
 	//Working - leetcode
 	public static boolean isValidBST(Node root, long minVal, long maxVal) {
 		if (root == null) 
 			return true;
+		
 		if (root.val >= maxVal || root.val <= minVal) 
 			return false;
 		

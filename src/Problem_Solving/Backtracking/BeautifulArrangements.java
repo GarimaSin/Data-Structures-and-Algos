@@ -1,4 +1,4 @@
-package Problem_Solving.Leetcode.Backtracking;
+package Problem_Solving.Backtracking;
 
 import java.util.LinkedList;
 

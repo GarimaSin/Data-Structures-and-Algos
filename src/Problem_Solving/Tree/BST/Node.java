@@ -1,4 +1,4 @@
-package Problem_Solving.Tree.BT;
+package Problem_Solving.Tree.BST;
 
 
 public class Node {

@@ -1,7 +1,4 @@
-package Problem_Solving.Tree.Pepcoding.Binary_Tree;
-
-import Problem_Solving.Tree.BT.ConstructTreeFromAnArray;
-import Problem_Solving.Tree.BT.TreeNode;
+package Problem_Solving.Tree.BT;
 
 public class MaxPathSumBetweenTwoNodes {
 
@@ -54,6 +51,9 @@ public class MaxPathSumBetweenTwoNodes {
         return max;
     }
 
+	
+	// ==========================================================================================
+	
 	
 	//Working
     int max = -999999;

@@ -9,10 +9,10 @@ import java.util.Map;
  * Continuous subarray
  * Subarray Sum Equals K - leetcode
  * 
- * Sol 1 = print all subarrays count -  map.put:   key = currsum, value = count 
- * Sol 2 = print max len subarray 	-  map.put:      key = sum, value = index 
- * Sol 3 = print all subarrays 		-  map.put:      key = sum, value = index 
- * Sol 4 = print max len subarray with equal no. of 0s and 1s 		-  map.put:      key = sum, value = index
+ * Sol 1 = print all subarrays count -  map.put:      key = currsum, value = count 
+ * Sol 2 = print max len subarray 	 -  map.put:      key = sum,     value = index 
+ * Sol 3 = print all subarrays 		 -  map.put:      key = sum,     value = index 
+ * Sol 4 = print max len subarray wid equal no. of 0s and 1s 	-  map.put:      key = sum, value = index
  */
 public class KSumContinuousSubrrays {
 
@@ -26,7 +26,7 @@ public class KSumContinuousSubrrays {
 
 		for (int i = 0; i < nums.length; i++) {
 			currSum += nums[i];
-			if (map.containsKey(currSum - k))			//contains - currSum - k and put currSum
+			if (map.containsKey(currSum - k))			//contains - currSum-k and put currSum
 				count += map.get(currSum - k);
 
 			map.put(currSum, map.getOrDefault(currSum, 0) + 1);		//V. Imp, first get the ans (here, get the count) then put the currSum in map.

@@ -33,16 +33,16 @@ public class NodesAtKDistance {
             return 1; 
         } 
    
-        int dl = printkdistanceNode(node.left, target, k); 
-        if(dl != -1) {
-        	kdistanceDown(node, k-dl, node.left);
-        	return dl+1;							// I - return 4m here coz once the target is found in either child of the tree, no need to traverse the other child
+        int l = printkdistanceNode(node.left, target, k); 
+        if(l != -1) {
+        	kdistanceDown(node, k-l, node.left);
+        	return l+1;							// I - return 4m here coz once the target is found in either child of the tree, no need to traverse the other child
         }
         
-        int dr = printkdistanceNode(node.right, target, k); 
-        if(dr != -1) {
-        	kdistanceDown(node, k-dr, node.right);
-        	return dr+1;							// I - return 4m here coz once the target is found in either child of the tree, no need to traverse the other child
+        int r = printkdistanceNode(node.right, target, k); 
+        if(r != -1) {
+        	kdistanceDown(node, k-r, node.right);
+        	return r+1;							// I - return 4m here coz once the target is found in either child of the tree, no need to traverse the other child
         }
         return -1; 
     }

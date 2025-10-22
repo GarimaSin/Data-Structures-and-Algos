@@ -15,8 +15,8 @@ public class RootToLeafSum {
 		if(node.left == null && node.right == null) 
 			System.out.println(sum+node.data);
 
-		int s = node.data+findSumNotWorking(node.left, sum);
-		int s1 = node.data+findSumNotWorking(node.right, sum);
+		int s = node.data + findSumNotWorking(node.left, sum);
+		int s1 = node.data + findSumNotWorking(node.right, sum);
 		sum = s+s1;
 		return sum;
 	}
@@ -64,27 +64,6 @@ public class RootToLeafSum {
 		findSumPath(node.right, sum, ans, target);
 	}
 
-	//Working = O(n), root to leaf sum = target, giving only 1 path
-	private static void findSum3(Node node, String ans, int target) {
-		if(node == null)
-			return;
-
-		if(node.left == null && node.right == null) {
-			target = target - node.data;
-			if(target == 0) {
-				System.out.println(ans+node.data+" findSum3.........");
-			}
-			return;
-		}
-		String tmp = ans;
-		ans = ans + node.data;
-		target = target - node.data;
-		findSum3(node.left, ans, target);
-		findSum3(node.right, ans, target);
-		ans = tmp;
-		target = target + node.data;
-	}
-
 	public static void main(String args[]) { 
 		RootToLeafSum tree = new RootToLeafSum(); 
 		tree.root = new Node(6); 
@@ -101,7 +80,6 @@ public class RootToLeafSum {
 		System.out.println();
 
 		findSumPath(tree.root, 0, "", 11);
-		findSum3(tree.root, "", 11);
 	} 
 
 	void levelOrder(Node root) {

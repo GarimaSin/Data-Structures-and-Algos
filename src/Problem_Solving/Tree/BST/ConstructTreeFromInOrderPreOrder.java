@@ -1,6 +1,5 @@
 package Problem_Solving.Tree.BST;
 
-import Problem_Solving.Tree.BST.LargestBSTInBT_NotCorrect.Node;
 
 public class ConstructTreeFromInOrderPreOrder {
 
@@ -21,7 +20,7 @@ public class ConstructTreeFromInOrderPreOrder {
                 break;
             }
         }
-        Node node = Node.newNode(preorder[index]);
+        Node node = new Node(preorder[index]);
         index++;
         node.left = createTree(inorder,preorder,start,i-1);
         node.right = createTree(inorder,preorder,i+1,end);

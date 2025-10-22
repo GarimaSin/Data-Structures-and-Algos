@@ -1,4 +1,4 @@
-package Problem_Solving.Tree.Pepcoding.Binary_Tree;
+package Problem_Solving.Tree.BT;
 
 public class SerializeDeserialize {
 

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
+
 public class LongestConsecutiveSequence {
 
 	TreeNode root;
@@ -19,9 +20,13 @@ public class LongestConsecutiveSequence {
         tree.root.right.right = new TreeNode(6);
 		System.out.println(LongestConsecutiveSeq(tree.root));
 		System.out.println("..................");
+		System.out.println(LongestConsecutiveSeq1(tree.root));
+		System.out.println("..................");
 		levelOrder(tree.root);
 	}
 	
+	
+	// Not correct according to Chatgpt
 	private static int longestStreak = 0;
 	private static int LongestConsecutiveSeq(TreeNode root) {
 		if(root == null)
@@ -44,6 +49,41 @@ public class LongestConsecutiveSequence {
         longestStreak = Math.max(longestStreak, currentMax);
       
         return currentMax;
+	}
+	
+	
+	// ==========================================================================================
+	
+	// Working - According to ChatGPT
+	private static int longestStreak1 = 0;
+	private static int LongestConsecutiveSeq1(TreeNode root) {
+		if(root == null)
+			return 0;
+		
+		if(root.left == null && root.right == null)
+			return 1;
+		
+		int l = LongestConsecutiveSeq1(root.left);
+		int r = LongestConsecutiveSeq1(root.right);
+		
+		// The maximum length of the consecutive sequence at the current node
+		if(root.left != null && root.val + 1 == root.left.val) 
+			l++;
+		if(root.right != null && root.val + 1 == root.right.val) 
+			r++;
+        
+		int currentMax = Math.max(l, r);
+        
+        
+		if(root.left != null && root.val + 1 != root.left.val)
+			l = 1;
+		if(root.right != null && root.val + 1 != root.right.val)
+			r = 1;
+		
+        // Update the longest streak if the current max is greater
+		longestStreak1 = Math.max(longestStreak1, currentMax);
+      
+        return Math.max(l, r);
 	}
 	
 	

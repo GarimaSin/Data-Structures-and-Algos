@@ -12,6 +12,47 @@ public class BinaryTreeCameras {
 		o.minCameraCover(root);
 	}
 	
+	
+	// Working
+	private int cameras1 = 0;
+    public int minCameraCover1(TreeNode root) {
+        if (minCamera1(root) == 0)
+            cameras1++;
+
+        return cameras1;
+    }
+
+    // Returns state of the node:
+    // 0 -> No camera is covering this node
+    // 1 -> covered
+    // 2 -> has camera 
+    int minCamera1(TreeNode node) {
+        if (node == null) 
+            return 2; // null nodes are considered covered
+
+        int left = minCamera1(node.left);
+        int right = minCamera1(node.right);
+
+        if (left == 0 || right == 0) {
+            // If any child is not covered, place camera here
+            cameras++;
+            return 2;
+        }
+
+        if (left == 2 || right == 2) {
+            // If any child has camera, this node is covered
+            return 1;
+        }
+        // If children are covered but no camera, this node is not covered
+        return 0;
+    }
+	
+	
+	
+    // =================================================================================
+	
+	
+    // Working
 	int cameras = 0;
     public int minCameraCover(TreeNode root) {
         if(root.left == null && root.right == null)
